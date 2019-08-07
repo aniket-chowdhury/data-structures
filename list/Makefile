@@ -3,7 +3,7 @@ C_FLAGS := -std=c++17
 
 BIN		:= bin
 SRC		:= src
-INCLUDE	:= ../headers
+INCLUDE	:= -I../headers -Iinclude
 LIB		:= lib
 
 LIBRARIES	:=
@@ -23,4 +23,4 @@ run: all
 	./$(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*
-	$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CC) $(C_FLAGS) $(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
