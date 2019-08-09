@@ -72,10 +72,10 @@ public:
 		}
 	}
 
-	node<T>* begin(){
+	node<T> *begin()
+	{
 		fence = head;
 		return fence;
 	}
 };
 } // namespace lib
-
