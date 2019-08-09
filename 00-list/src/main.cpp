@@ -16,5 +16,6 @@ int main(int argc, char *argv[])
     l1.print();
     l2.print();
 
+    (l1.begin())->element;
     return 0;
 }
