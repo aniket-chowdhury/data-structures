@@ -97,4 +97,4 @@ public:
 	}
 	int size() { return stackSize; }
 };
-} // namespace mylib
+} // namespace lib
