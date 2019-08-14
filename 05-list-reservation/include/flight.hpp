@@ -1,6 +1,7 @@
 #include <string>
 #include <utility>
 #include "list.hpp"
+#include "print.hpp"
 
 class flight
 {
@@ -18,5 +19,33 @@ public:
         : flightNumber(flightNumber),
           passengers(passengersVal)
     {
+    }
+
+    bool append(std::initializer_list<std::string> passengersVal)
+    {
+        try
+        {
+            passengers.append(passengersVal);
+            return 1;
+        }
+        catch (const std::exception &e)
+        {
+            lib::print(e.what());
+            return 0;
+        }
+    }
+
+    bool print()
+    {
+        try
+        {
+            passengers.print();
+
+            return true;
+        }
+        catch (std::exception &e)
+        {
+            lib::print(e.what());
+        }
     }
 };
