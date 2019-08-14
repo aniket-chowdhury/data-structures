@@ -41,6 +41,36 @@ public:
 		return true;
 	}
 
+	bool append(const std::initializer_list<T> arr)
+	{
+		if (head == nullptr)
+		{
+			int flag = 1;
+			for (auto it = arr.begin(); it < arr.end(); it++)
+			{
+				if (flag == 1)
+				{
+					head = new node<T>(*it, nullptr);
+					tail = head;
+					fence = head;
+					flag++;
+				}
+				else
+				{
+					append(*it);
+				}
+			}
+			return 1;
+		}
+		else
+		{
+			for (auto it = arr.begin(); it < arr.end(); it++)
+			{
+				append(*it);
+			}
+		}
+	}
+
 	bool print()
 	{
 		fence = head;
