@@ -84,6 +84,14 @@ public:
 		return true;
 	}
 
+	bool remove(T element)
+	{
+		fence = head;
+		while (head != nullptr)
+		{
+		}
+	}
+
 	list(const std::initializer_list<T> arr)
 	{
 		for (auto it = arr.begin(); it < arr.end(); it++)
