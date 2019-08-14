@@ -8,8 +8,9 @@ class node
 public:
 	T element;
 	node *next;
-	node(T elemval, node *nextval = nullptr) : element(elemval), next(nextval) {}
-	node(node *nextval = nullptr) : next(nextval) {}
+	node *prev;
+	node(T elemval, node *nextval = nullptr, node *prevval = nullptr) : element(elemval), next(nextval), prev(prevval) {}
+	node(node *nextval = nullptr, node *prevval = nullptr) : next(nextval), prev(prevval) {}
 };
 
 template <typename T>
@@ -31,6 +32,8 @@ public:
 	bool append(T it)
 	{
 		tail->next = new node<T>(it, nullptr);
+		tail->next->prev = tail;
+
 		if (flag == 1)
 		{
 			head = tail->next;
@@ -45,7 +48,6 @@ public:
 	{
 		if (head == nullptr)
 		{
-			int flag = 1;
 			for (auto it = arr.begin(); it < arr.end(); it++)
 			{
 				if (flag == 1)
@@ -86,9 +88,33 @@ public:
 
 	bool remove(T element)
 	{
-		fence = head;
-		while (head != nullptr)
+		if (head->element == element)
 		{
+			head->next->prev = nullptr;
+			head = head->next;
+			flag--;
+			return flag;
+		}
+		fence = head->next;
+		while (fence != nullptr)
+		{
+			if (fence->element == element)
+			{
+				fence->prev->next = fence->next;
+				if (fence->next == nullptr)
+				{
+					tail=fence->prev;
+				}
+				else
+				{
+					fence->next->prev = fence->prev;
+				}
+				flag--;
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 	}
 
@@ -113,6 +139,12 @@ public:
 	node<T> *begin()
 	{
 		fence = head;
+		return fence;
+	}
+
+	node<T> *end()
+	{
+		fence = tail;
 		return fence;
 	}
 };
