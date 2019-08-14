@@ -18,5 +18,7 @@ int main(int argc, char *argv[])
 
     flights[0].print();
     flights[1].print();
+
+    lib::print(flights[0].getPassengers().begin()->element);
     return 0;
 }

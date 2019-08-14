@@ -9,6 +9,10 @@ class flight
     std::string flightNumber;
 
 public:
+    lib::list<std::string> getPassengers(){
+        return passengers;
+    }
+
     flight(std::string flightNumberVal) : flightNumber(flightNumberVal) {}
     flight(std::pair<std::string, std::initializer_list<std::string>> p)
     {
