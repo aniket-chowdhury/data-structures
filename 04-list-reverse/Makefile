@@ -3,7 +3,7 @@ C_FLAGS := -std=c++17
 
 BIN		:= bin
 SRC		:= src
-INCLUDE	:= -I../headers -Iinclude -I../00-list/include
+INCLUDE	:= -I../headers -Iinclude -I../00-forward-list/include
 LIB		:= lib
 
 LIBRARIES	:=

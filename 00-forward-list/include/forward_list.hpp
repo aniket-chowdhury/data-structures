@@ -13,7 +13,7 @@ public:
 };
 
 template <typename T>
-class list
+class forward_list
 {
 private:
 	node<T> *head;
@@ -27,7 +27,7 @@ private:
 
 public:
 	int flag = 1;
-	list() { init(); }
+	forward_list() { init(); }
 	bool append(T it)
 	{
 		tail->next = new node<T>(it, nullptr);
@@ -54,7 +54,8 @@ public:
 		return true;
 	}
 
-	list(const std::initializer_list<T> arr)
+
+	forward_list(const std::initializer_forward_list<T> arr)
 	{
 		for (auto it = arr.begin(); it < arr.end(); it++)
 		{

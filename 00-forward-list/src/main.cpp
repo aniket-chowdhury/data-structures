@@ -1,12 +1,12 @@
 #include <iostream>
 #include "print.hpp"
-#include "list.hpp"
+#include "forward_list.hpp"
 
 int main(int argc, char *argv[])
 {
 
-    lib::list<int> l1;
-    lib::list<int> l2 = {23, 5, 76, 6};
+    lib::forward_list<int> l1;
+    lib::forward_list<int> l2 = {23, 5, 76, 6};
 
     l1.append(34);
     l1.append(4);
