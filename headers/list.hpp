@@ -26,50 +26,31 @@ private:
 		head = fence = tail = new node<T>(nullptr);
 	}
 
+	int flag = 0;
+
 public:
-	int flag = 1;
+	int size() { return flag; }
 	list() { init(); }
 	bool append(T it)
 	{
 		tail->next = new node<T>(it, nullptr);
 		tail->next->prev = tail;
 
-		if (flag == 1)
+		if (flag == 0)
 		{
 			head = tail->next;
-			flag++;
 			fence = head;
 		}
+		flag++;
 		tail = tail->next;
 		return true;
 	}
 
 	bool append(const std::initializer_list<T> arr)
 	{
-		if (head == nullptr)
+		for (auto it = arr.begin(); it < arr.end(); it++)
 		{
-			for (auto it = arr.begin(); it < arr.end(); it++)
-			{
-				if (flag == 1)
-				{
-					head = new node<T>(*it, nullptr);
-					tail = head;
-					fence = head;
-					flag++;
-				}
-				else
-				{
-					append(*it);
-				}
-			}
-			return 1;
-		}
-		else
-		{
-			for (auto it = arr.begin(); it < arr.end(); it++)
-			{
-				append(*it);
-			}
+			append(*it);
 		}
 	}
 
@@ -114,9 +95,9 @@ public:
 			}
 			else if (fence == tail)
 			{
-				tail->prev->next =nullptr;
+				tail->prev->next = nullptr;
 				tail = tail->prev;
-				fence=nullptr;
+				fence = nullptr;
 			}
 			else
 			{

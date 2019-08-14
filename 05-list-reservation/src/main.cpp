@@ -8,19 +8,15 @@ int main(int argc, char *argv[])
 {
     std::vector<flight> flights;
     flight a1("s1");
-    flight a2("s2");
 
     flights.push_back(a1);
-    flights.push_back(a2);
 
     flights[0].append({"Raja", "Mohan", "Phalguni", "Mahima"});
-    flights[1].append({"Sunder", "Rashmi", "Srikant"});
+    flights[0].append({"Raja",  "Mahima"});
+    flights[0].append({"Raja"});
 
-
-    flights[0].print();
-    
-    flights[0].remove("Mahima");
-
+    flights[0].remove({"Raja",  "Mahima"});
+    lib::print(flights[0].getPassengers().size());
     flights[0].print();
     return 0;
 }

@@ -49,7 +49,7 @@ public:
     {
         for (auto it = passengersVal.begin(); it < passengersVal.end(); it++)
         {
-            // passengers.remove(*it);
+            passengers.remove(*it);
         }
     }
 
