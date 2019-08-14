@@ -16,9 +16,11 @@ int main(int argc, char *argv[])
     flights[0].append({"Raja", "Mohan", "Phalguni", "Mahima"});
     flights[1].append({"Sunder", "Rashmi", "Srikant"});
 
-    flights[0].print();
-    flights[1].print();
 
-    lib::print(flights[0].getPassengers().begin()->element);
+    flights[0].print();
+    
+    flights[0].remove("Mahima");
+
+    flights[0].print();
     return 0;
 }

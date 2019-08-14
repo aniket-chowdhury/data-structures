@@ -9,7 +9,8 @@ class flight
     std::string flightNumber;
 
 public:
-    lib::list<std::string> getPassengers(){
+    lib::list<std::string> getPassengers()
+    {
         return passengers;
     }
 
@@ -39,17 +40,21 @@ public:
         }
     }
 
+    bool remove(std::string s)
+    {
+        passengers.remove(s);
+    }
+
+    bool remove(std::initializer_list<std::string> passengersVal)
+    {
+        for (auto it = passengersVal.begin(); it < passengersVal.end(); it++)
+        {
+            // passengers.remove(*it);
+        }
+    }
+
     bool print()
     {
-        try
-        {
-            passengers.print();
-
-            return true;
-        }
-        catch (std::exception &e)
-        {
-            lib::print(e.what());
-        }
+        passengers.print();
     }
 };

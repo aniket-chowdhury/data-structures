@@ -86,35 +86,49 @@ public:
 		return true;
 	}
 
-	bool remove(T element)
+	node<T> *find(T element)
 	{
-		if (head->element == element)
-		{
-			head->next->prev = nullptr;
-			head = head->next;
-			flag--;
-			return flag;
-		}
-		fence = head->next;
+		fence = head;
 		while (fence != nullptr)
 		{
 			if (fence->element == element)
+				return fence;
+			fence = fence->next;
+		}
+		return nullptr;
+	}
+
+	bool remove(T element)
+	{
+		fence = this->find(element);
+		if (fence != nullptr)
+		{
+			if (flag == 1)
 			{
+				fence = tail = head = nullptr;
+			}
+			else if (fence == head)
+			{
+				head->next->prev = nullptr;
+				head = head->next;
+			}
+			else if (fence == tail)
+			{
+				tail->prev->next =nullptr;
+				tail = tail->prev;
+				fence=nullptr;
+			}
+			else
+			{
+				fence->next->prev = fence->prev;
 				fence->prev->next = fence->next;
-				if (fence->next == nullptr)
-				{
-					tail=fence->prev;
-				}
-				else
-				{
-					fence->next->prev = fence->prev;
-				}
-				flag--;
-				return true;
 			}
-			else{
-				return false;
-			}
+			flag--;
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
