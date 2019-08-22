@@ -43,6 +43,18 @@ struct less_than_key
     }
 };
 
+struct MatchString
+{
+    MatchString(const std::string &s) : s_(s) {}
+    bool operator()(const batman &obj) const
+    {
+        return obj.name == s_;
+    }
+
+private:
+    const std::string &s_;
+};
+
 class BatsmenManager
 {
 public:
@@ -63,6 +75,10 @@ public:
         std::sort(batsmen.begin(), batsmen.end(), less_than_key());
         if (batsmen.size() > 10)
             batsmen.pop_back();
+    }
+    void remove(std::string s) {
+        auto it = std::find_if(batsmen.begin(), batsmen.end(), MatchString(s));
+        batsmen.erase(it);
     }
 };
 
@@ -90,7 +106,7 @@ int main(int argc, char *argv[])
 
     while (true)
     {
-        std::cout << ("\n Press\n\
+        std::cout << ("\n\n Press\n\
  1. Insert a score of a new player.\
 (Name, number of 1s,2s,3s,4s,6s)\n \
 2. Display scorecard. (display list of top 10 players.)\n \
@@ -130,7 +146,9 @@ int main(int argc, char *argv[])
             i = 0;
             break;
         case '3':
-            /* code */
+        std::cout << " Enter player name to be removed: ";
+            std::cin >> s;
+            B.remove(s);
             break;
 
         default:
