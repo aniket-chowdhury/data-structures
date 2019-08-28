@@ -16,7 +16,7 @@ public:
 template <typename T>
 class list
 {
-private:
+public:
 	node<T> *head;
 	node<T> *fence;
 	node<T> *tail;
@@ -28,7 +28,6 @@ private:
 
 	int flag = 0;
 
-public:
 	int size() { return flag; }
 	list() { init(); }
 	bool append(T it)

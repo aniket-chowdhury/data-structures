@@ -37,7 +37,6 @@ std::vector<std::string> split_string(std::string filename,
         prev = pos + 1;
     }
 
-    // To get the last substring (or only, if delimiter is not found)
     strings.push_back(str.substr(prev));
 
     return strings;

@@ -10,6 +10,21 @@ void place(std::vector<std::string> &v, std::string s)
     v.push_back(s);
 }
 
+std::string readFile(std::string filename)
+{
+    std::ifstream file;
+    std::string line;
+    // std::stringstream ss;
+    char x;
+    file.open(filename);
+    std::string str = "";
+    for (std::string line; getline(file, line);)
+    {
+        std::cout << line;
+    }
+    return str;
+}
+
 int main(int argc, char *argv[])
 {
     std::vector<flight> flights;
@@ -23,8 +38,14 @@ int main(int argc, char *argv[])
 
     flights[0].remove({"Raja", "Mahima"});
     lib::print(flights[0].getPassengers().size());
-    lib::readFile("input.txt");
-    // std::cout << k[0];
+    std::ifstream in("file.txt");
+    std::string line;
+    std::ifstream f("input.txt");
+    while (getline(f, line))
+    {
+        std::cout << line << " ";
+        // process(&line);
+    } // std::cout << k[0];
     // std::string str((std::istreambuf_iterator<char>(t)),
     //                 std::istreambuf_iterator<char>());
 
