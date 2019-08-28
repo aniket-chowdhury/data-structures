@@ -18,14 +18,13 @@ int main(int argc, char *argv[])
     flights.push_back(a1);
 
     flights[0].append({"Raja", "Mohan", "Phalguni", "Mahima"});
-    flights[0].append({"Raja",  "Mahima"});
+    flights[0].append({"Raja", "Mahima"});
     flights[0].append({"Raja"});
 
-    flights[0].remove({"Raja",  "Mahima"});
+    flights[0].remove({"Raja", "Mahima"});
     lib::print(flights[0].getPassengers().size());
-    flights[0].print();
-    lib::print(lib::readFile("input.txt"));
-    // std::ifstream t("input.txt");
+    lib::readFile("input.txt");
+    // std::cout << k[0];
     // std::string str((std::istreambuf_iterator<char>(t)),
     //                 std::istreambuf_iterator<char>());
 
