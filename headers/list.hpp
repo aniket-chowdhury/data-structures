@@ -151,5 +151,7 @@ public:
 		fence = tail;
 		return fence;
 	}
+
 };
+
 } // namespace lib

@@ -11,6 +11,11 @@ public:
 	node *next;
 	node(T elemval, node *nextval = nullptr) : element(elemval), next(nextval) {}
 	node(node *nextval = nullptr) : next(nextval) {}
+
+	T &operator()()
+	{
+		return element;
+	}
 };
 
 template <typename T>
@@ -48,6 +53,8 @@ public:
 
 	bool print()
 	{
+		if (head == nullptr)
+			return 0;
 		fence = head;
 		while (fence != nullptr)
 		{
@@ -201,5 +208,25 @@ public:
 		currY->next = currX->next;
 		currX->next = temp;
 	}
+
+	bool operator==(const forward_list<T> &l1);
 };
+template <typename T>
+inline bool forward_list<T>::operator==(const forward_list<T> &l1)
+{
+	node<T> *f1 = l1.head;
+	node<T> *f2 = this->head;
+
+	while (f1 != nullptr && f2 != nullptr)
+	{
+		if (f1->element != f2->element)
+			break;
+
+		f1 = f1->next;
+		f2 = f2->next;
+
+	}
+
+	return (f1 == nullptr && f2 == nullptr);
+}
 } // namespace lib
