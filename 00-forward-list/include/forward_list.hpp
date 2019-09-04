@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_set>
 
 namespace lib
 {
@@ -17,7 +18,6 @@ class forward_list
 {
 private:
 	node<T> *head;
-	node<T> *fence;
 	node<T> *tail;
 
 	void init()
@@ -26,6 +26,11 @@ private:
 	}
 
 public:
+	node<T> *getHead() { return head; }
+	node<T> *getTail() { return tail; }
+	void setHead(node<T> *h) { head = h; }
+	void setTail(node<T> *t) { tail = t; }
+	node<T> *fence;
 	int flag = 1;
 	forward_list() { init(); }
 	bool append(T it)
@@ -50,12 +55,11 @@ public:
 			fence = fence->next;
 		}
 		fence = head;
-		std::cout << std::endl;
+		// std::cout << std::endl;
 		return true;
 	}
 
-
-	forward_list(const std::initializer_forward_list<T> arr)
+	forward_list(const std::initializer_list<T> arr)
 	{
 		for (auto it = arr.begin(); it < arr.end(); it++)
 		{
@@ -77,6 +81,125 @@ public:
 	{
 		fence = head;
 		return fence;
+	}
+
+	bool alternate()
+	{
+		if (head == nullptr)
+			return false;
+		node<T> *fence = head;
+		node<T> *n = head->next;
+
+		while (fence != nullptr && n != nullptr)
+		{
+			fence->next = n->next;
+
+			free(n);
+
+			fence = fence->next;
+			if (fence != NULL)
+				n = fence->next;
+		}
+	}
+
+	bool nthNode(int n)
+	{
+		if (head == nullptr)
+			return false;
+
+		int i = 0;
+		fence = head;
+
+		while (fence->next != nullptr)
+		{
+			i += 1;
+			if (i == n)
+			{
+				std::cout << fence->element;
+				return true;
+			}
+			fence = fence->next;
+		}
+		return false;
+	}
+
+	bool removeDuplicates()
+	{
+		if (head == nullptr)
+			return false;
+		std::unordered_set<int> seen;
+		fence = head;
+		node<T> *prev = nullptr;
+		while (fence != nullptr)
+		{
+			if (seen.find(fence->element) != seen.end())
+			{
+				prev->next = fence->next;
+				delete (fence);
+			}
+			else
+			{
+				seen.insert(fence->element);
+				prev = fence;
+			}
+			fence = fence->next;
+		}
+	}
+
+	bool reverse()
+	{
+
+		node<T> *fence = head;
+		node<T> *prev = nullptr, *n = nullptr;
+
+		while (fence != nullptr)
+		{
+			n = fence->next;
+
+			fence->next = prev;
+
+			prev = fence;
+			fence = n;
+		}
+		head = prev;
+	}
+
+	void swapnode(int x, int y)
+	{
+		node<T> **head_ref = &head;
+		if (x == y)
+			return;
+
+		node<T> *prevX = nullptr, *currX = *head_ref;
+		while (currX && currX->element != x)
+		{
+			prevX = currX;
+			currX = currX->next;
+		}
+
+		node<T> *prevY = nullptr, *currY = *head_ref;
+		while (currY && currY->element != y)
+		{
+			prevY = currY;
+			currY = currY->next;
+		}
+
+		if (currX == nullptr || currY == nullptr)
+			return;
+
+		if (prevX != nullptr)
+			prevX->next = currY;
+		else
+			*head_ref = currY;
+
+		if (prevY != nullptr)
+			prevY->next = currX;
+		else
+			*head_ref = currX;
+
+		node<T> *temp = currY->next;
+		currY->next = currX->next;
+		currX->next = temp;
 	}
 };
 } // namespace lib

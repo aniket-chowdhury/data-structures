@@ -77,7 +77,17 @@ public:
 		}
 		return nullptr;
 	}
+	bool alternate()
+	{
+		fence = head;
+		while (fence != nullptr)
+		{
 
+			std::cout << fence->element << " ";
+			if (fence->next != nullptr)
+				fence->next = fence->next->next;
+		}
+	}
 	bool remove(T element)
 	{
 		fence = this->find(element);

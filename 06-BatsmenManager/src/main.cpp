@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
     B.add("Anurup", {10, 2, 3, 4, 5});
     B.add("Jai", {1, 2, 3, 4, 2});
     B.add("J", {0, 0, 0, 0, 100});
+    B.add("K", {1, 0, 0, 0, 100});
     int i = 0;
     for (auto it = B.batsmen.rbegin(); it != B.batsmen.rend(); it++)
     {

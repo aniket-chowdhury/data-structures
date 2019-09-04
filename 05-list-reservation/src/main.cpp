@@ -29,23 +29,52 @@ int main(int argc, char *argv[])
 {
     std::vector<flight> flights;
     flight a1("s1");
+    flight a2("s2");
+    flight a3("s3");
 
     flights.push_back(a1);
+    flights.push_back(a2);
+    flights.push_back(a3);
 
     flights[0].append({"Raja", "Mohan", "Phalguni", "Mahima"});
-    flights[0].append({"Raja", "Mahima"});
-    flights[0].append({"Raja"});
+    flights[0].remove("Raja");
+    
+    flights[1].append({"Raja", "Mohan", "Phalguni"});
+    flights[1].remove("Mohan");
 
-    flights[0].remove({"Raja", "Mahima"});
-    lib::print(flights[0].getPassengers().size());
-    std::ifstream in("file.txt");
-    std::string line;
-    std::ifstream f("input.txt");
-    while (getline(f, line))
-    {
-        std::cout << line << " ";
-        // process(&line);
-    } // std::cout << k[0];
+    // flights[0].remove({"Raja", "Mahima"});
+
+    std::cout << (flights[0].print());
+    std::cout << (flights[1].print());
+
+    // while (true)
+    // {
+    //     char ch;
+    //     std::cin >> ch;
+    //     switch (ch)
+    //     {
+    //     case 1:
+    //         std::cout << "Enter Passenger Number:";
+    //         int x;
+    //         std::cin >> x;
+    //         for (size_t i = 0; i < x; i++)
+    //         {
+    //             std::vector<std::string> v;
+    //             for (auto &&i : v)
+    //             {
+    //                 std::cin >> v;
+    //             }
+                
+    //             /* code */
+    //         }
+            
+    //     case 2:
+    //     case 3:
+    //     }
+        /* code */
+    // }
+
+    // std::cout << k[0];
     // std::string str((std::istreambuf_iterator<char>(t)),
     //                 std::istreambuf_iterator<char>());
 
