@@ -1,7 +1,7 @@
 #include <iostream>
 #include "print.hpp"
 #include "forward_list.hpp"
-#include "binarytree.hpp"
+#include "binary_tree.hpp"
 
 template <typename T>
 lib::forward_list<T> join(lib::forward_list<T> &l1, lib::forward_list<T> &l2)
@@ -64,8 +64,23 @@ bool equal(lib::forward_list<T> l1, lib::forward_list<T> l2)
 template <typename T>
 lib::forward_list<T> intersection(lib::forward_list<T> &l1, lib::forward_list<T> &l2)
 {
-    lib::forward_list<int> l;
+    lib::forward_list<T> l;
+    auto fence1 = l1.getHead();
 
+    while (fence1 != nullptr)
+    {
+        auto fence2 = l2.getHead();
+        while (fence2 != nullptr)
+        {
+            if (fence1->element == fence2->element)
+            {
+                l.append(fence1->element);
+                break;
+            }
+            fence2 = fence2->next;
+        }
+        fence1 = fence1->next;
+    }
     return l;
 }
 
@@ -114,11 +129,12 @@ int main(int argc, char *argv[])
     auto l = intersection(l1, l2);
     l.print();
 
-    std::cout << (l2 == l3) << std::endl;
+    std::cout << std::endl
+              << (l2 == l3) << std::endl;
 
-    l1.print();
+    // l1.print();
 
-    std::endl(std::cout);
+    // std::endl(std::cout);
     greaterOnLeft(l4);
     l4.print();
 

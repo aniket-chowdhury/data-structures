@@ -66,6 +66,8 @@ public:
 		return true;
 	}
 
+	
+
 	forward_list(const std::initializer_list<T> arr)
 	{
 		for (auto it = arr.begin(); it < arr.end(); it++)
@@ -210,6 +212,8 @@ public:
 	}
 
 	bool operator==(const forward_list<T> &l1);
+
+
 };
 template <typename T>
 inline bool forward_list<T>::operator==(const forward_list<T> &l1)
